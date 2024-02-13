@@ -1,4 +1,4 @@
-package blazor.entity;
+package blazor.Entity;
 
 import jakarta.persistence.*;
 

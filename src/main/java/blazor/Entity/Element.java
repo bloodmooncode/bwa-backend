@@ -1,4 +1,4 @@
-package blazor.entity;
+package blazor.Entity;
 
 import jakarta.persistence.*;
 
@@ -22,10 +22,9 @@ public class Element {
     private Double minimumBuyingPower;
     private Double maximumSellingPower;
     private Double minimumSellingPower;
-    @ElementCollection
-    @CollectionTable(name = "your_entity_doubles")
-    @Column(name = "SellingPower")
-    private List<Double> SellingPower;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SellingPower> sellingPowers;
 
     public Integer getId() {
         return id;
@@ -99,11 +98,11 @@ public class Element {
         this.minimumSellingPower = minimumSellingPower;
     }
 
-    public List<Double> getSellingPower() {
-        return SellingPower;
+    public List<SellingPower> getSellingPowers() {
+        return sellingPowers;
     }
 
-    public void setSellingPower(List<Double> sellingPower) {
-        SellingPower = sellingPower;
+    public void setSellingPowers(List<SellingPower> sellingPowers) {
+        this.sellingPowers = sellingPowers;
     }
 }
