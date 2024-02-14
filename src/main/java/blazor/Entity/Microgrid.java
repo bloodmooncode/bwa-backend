@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class Microgrid {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer userId;
     private String name;
