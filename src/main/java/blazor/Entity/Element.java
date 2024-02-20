@@ -11,10 +11,9 @@ import java.util.List;
 @Entity
 public class Element {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
     private Integer userId ;
-
     private String name;
     private String timeHorizon;
     private String type;
@@ -25,6 +24,18 @@ public class Element {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SellingPower> sellingPowers;
+
+    public Element() {
+    }
+
+    public Element(String name, String type, Double maximumBuyingPower, Double minimumBuyingPower, Double maximumSellingPower, Double minimumSellingPower) {
+        this.name = name;
+        this.type = type;
+        this.maximumBuyingPower = maximumBuyingPower;
+        this.minimumBuyingPower = minimumBuyingPower;
+        this.maximumSellingPower = maximumSellingPower;
+        this.minimumSellingPower = minimumSellingPower;
+    }
 
     public Integer getId() {
         return id;
@@ -105,4 +116,5 @@ public class Element {
     public void setSellingPowers(List<SellingPower> sellingPowers) {
         this.sellingPowers = sellingPowers;
     }
+
 }
