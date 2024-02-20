@@ -4,9 +4,10 @@ import blazor.Entity.Microgrid;
 import blazor.Repository.MicrogridRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 /**
  * Created by ZYP on 2024/2/13 9:08PM
@@ -17,7 +18,7 @@ public class MicrogridService {
     @Autowired
     private MicrogridRepository microgridRepository;
 
-    public Iterable<Microgrid> getAllMicrogrids() {
+    public List<Microgrid> getAllMicrogrids() {
         return microgridRepository.findAll();
     }
 
