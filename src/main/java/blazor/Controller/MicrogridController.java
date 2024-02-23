@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Tag(name = "Microgrids")
 @RestController
-@RequestMapping(path="/microgrids") // This means URL's start with /demo (after Application path)
+@RequestMapping(path="/microgrids")
 public class MicrogridController {
     @Autowired
     private MicrogridService microgridService;
