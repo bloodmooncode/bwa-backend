@@ -59,11 +59,9 @@ public class ELementService {
         return new ResponseEntity<>(element, HttpStatus.OK);
     }
 
-    public void createELement(@PathVariable("microgridId") Integer microgridId, @RequestParam String name, String type, Double maximumBuyingPower, Double minimumBuyingPower, Double maximumSellingPower, Double minimumSellingPower) {
-        Element element = new Element(name, type, maximumBuyingPower, minimumBuyingPower, maximumSellingPower, minimumSellingPower);
+    public void createELement(@PathVariable("microgridId") Integer microgridId, @RequestBody Element element) {
         eLementRepository.save(element);
-        Microgrid microgrid = microgridRepository.findById(microgridId)
-                .orElseThrow(() -> new RuntimeException("Microgrid not found with id: " + microgridId));
+        Microgrid microgrid = microgridRepository.findById(microgridId) .orElseThrow(() -> new RuntimeException("Microgrid not found with id: " + microgridId));
         microgrid.getElements().add(element);
         microgridRepository.save(microgrid);
     }

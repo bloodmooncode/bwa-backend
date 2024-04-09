@@ -36,8 +36,8 @@ public class ELementController {
 
     @Operation(summary = "Create one Element in gridId")
     @PostMapping("/{microgridId}/elements/create")
-    public void createELement(@PathVariable("microgridId") Integer microgridId, @RequestParam String name, String type, Double maximumBuyingPower, Double minimumBuyingPower, Double maximumSellingPower, Double minimumSellingPower) {
-        eLementService.createELement(microgridId , name,  type, maximumBuyingPower, minimumBuyingPower, maximumSellingPower, minimumSellingPower);
+    public void createELement(@PathVariable("microgridId") Integer microgridId, @RequestBody Element element) {
+        eLementService.createELement(microgridId, element);
     }
 
     @Operation(summary = "Delete one Element in gridId")
