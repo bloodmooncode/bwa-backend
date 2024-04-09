@@ -22,7 +22,7 @@ public class SellingPower {
 
     private String timeHorizon;
 
-    private Double SellingPower;
+    private Double sellingPower;
 
     public Integer getId() {
         return id;
@@ -41,10 +41,10 @@ public class SellingPower {
     }
 
     public Double getSellingPower() {
-        return SellingPower;
+        return sellingPower;
     }
 
     public void setSellingPower(Double sellingPower) {
-        SellingPower = sellingPower;
+        this.sellingPower = sellingPower;
     }
 }

@@ -2,6 +2,7 @@ package blazor.Service;
 
 import blazor.Entity.Element;
 import blazor.Entity.Microgrid;
+import blazor.Entity.SellingPower;
 import blazor.Repository.ELementRepository;
 import blazor.Repository.MicrogridRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -99,5 +101,17 @@ public class ELementService {
 
         // 保存更新后的 Element 对象到数据库中
         eLementRepository.save(oldElement);
+    }
+
+    public List<Integer> getSellingPowerIdsByElementId(Integer elementId) {
+        Element element = eLementRepository.findById(elementId).orElse(null);
+        if (element != null) {
+            List<Integer> sellingPowerIds = new ArrayList<>();
+            for (SellingPower sellingPower : element.getSellingPowers()) {
+                sellingPowerIds.add(sellingPower.getId());
+            }
+            return sellingPowerIds;
+        }
+        return Collections.emptyList();
     }
 }
