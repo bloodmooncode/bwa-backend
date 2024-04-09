@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * Created by ZYP on 2024/2/2 4:45PM
  */
+@CrossOrigin(origins = "http://localhost:5277")
 @Tag(name = "Microgrids")
 @RestController
 @RequestMapping(path="/microgrids")
