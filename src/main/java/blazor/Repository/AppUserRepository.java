@@ -1,6 +1,6 @@
 package blazor.Repository;
 
-import blazor.Entity.User;
+import blazor.Entity.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,14 +14,15 @@ import java.util.Optional;
  */
 @Repository
 @Transactional(readOnly = true)
-public interface UserRepository
-        extends JpaRepository<User, Long> {
+public interface AppUserRepository
+        extends JpaRepository<AppUser, Long> {
 
-    Optional<User> findByEmail(String email);
+    Optional<AppUser> findByEmail(String email);
 
     @Transactional
     @Modifying
-    @Query("UPDATE User a " +
+    @Query("UPDATE AppUser a " +
             "SET a.enabled = TRUE WHERE a.email = ?1")
     int enableAppUser(String email);
+
 }

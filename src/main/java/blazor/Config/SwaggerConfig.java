@@ -24,5 +24,4 @@ public class SwaggerConfig {
                         .description("外部文档")
                         .url("https://springshop.wiki.github.org/docs"));
     }
-
 }

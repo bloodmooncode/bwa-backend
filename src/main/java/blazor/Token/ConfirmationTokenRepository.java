@@ -1,6 +1,6 @@
-package blazor.Repository;
+package blazor.Token;
 
-import blazor.Entity.ConfirmationToken;
+import blazor.Token.ConfirmationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

@@ -1,5 +1,6 @@
-package blazor.Entity;
+package blazor.Token;
 
+import blazor.Entity.AppUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +16,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 public class ConfirmationToken {
-
     @SequenceGenerator(
             name = "confirmation_token_sequence",
             sequenceName = "confirmation_token_sequence",
@@ -44,15 +44,15 @@ public class ConfirmationToken {
             nullable = false,
             name = "user_id"
     )
-    private User user;
+    private AppUser appUser;
 
     public ConfirmationToken(String token,
                              LocalDateTime createdAt,
                              LocalDateTime expiresAt,
-                             User user) {
+                             AppUser user) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
-        this.user = user;
+        this.appUser = user;
     }
 }

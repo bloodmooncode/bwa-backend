@@ -1,7 +1,5 @@
-package blazor.Service;
+package blazor.Token;
 
-import blazor.Entity.ConfirmationToken;
-import blazor.Repository.ConfirmationTokenRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

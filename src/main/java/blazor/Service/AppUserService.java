@@ -3,8 +3,8 @@ package blazor.Service;
 /**
  * Created by ZYP on 2024/4/19 12:28AM
  */
-import blazor.Entity.User;
-import blazor.Repository.UserRepository;
+import blazor.Entity.AppUser;
+import blazor.Repository.AppUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,12 +15,12 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class AppUserService implements UserDetailsService {
 
     private final static String USER_NOT_FOUND_MSG =
             "user with email %s not found";
 
-    private final UserRepository appUserRepository;
+    private final AppUserRepository appUserRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -32,7 +32,7 @@ public class UserService implements UserDetailsService {
                                 String.format(USER_NOT_FOUND_MSG, email)));
     }
 
-    public String signUpUser(User User) {
+    public String signUpUser(AppUser User) {
         boolean userExists = appUserRepository
                 .findByEmail(User.getEmail())
                 .isPresent();
