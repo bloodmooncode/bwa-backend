@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/elements")
 public class SellingController {
     @Autowired
-    SellingService sellingService;
+    private SellingService sellingService;
 
     @Operation(summary = "Get SellingPowers of elementId")
     @GetMapping ("/{elementId}/sellingPowers/all")

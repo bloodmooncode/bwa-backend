@@ -8,8 +8,10 @@ import blazor.Token.ConfirmationToken;
 import blazor.Token.ConfirmationTokenService;
 import blazor.Service.AppUserService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 
@@ -30,7 +32,7 @@ public class RegistrationService {
                 test(request.getEmail());
 
         if (!isValidEmail) {
-            throw new IllegalStateException("email not valid");
+            return "email not valid";
         }
 
         String token = appUserService.signUpUser(
@@ -43,7 +45,7 @@ public class RegistrationService {
                 )
         );
 
-        String link = "http://localhost:8080/api/user/registration/confirm?token=" + token;
+        String link = "http://localhost:8080/api/user/auth/confirm?token=" + token;
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getFirstName(), link));
@@ -58,8 +60,9 @@ public class RegistrationService {
                 .orElseThrow(() ->
                         new IllegalStateException("token not found"));
 
+
         if (confirmationToken.getConfirmedAt() != null) {
-            throw new IllegalStateException("email already confirmed");
+            return "email already confirmed";
         }
 
         LocalDateTime expiredAt = confirmationToken.getExpiresAt();
@@ -141,5 +144,11 @@ public class RegistrationService {
                 "  </tbody></table><div class=\"yj6qo\"></div><div class=\"adL\">\n" +
                 "\n" +
                 "</div></div>";
+    }
+
+    public ResponseEntity<?> loginUser(@RequestBody AppUser appUser) {
+        return appUserService.authenticateUser(appUser.getEmail(), appUser.getPassword())
+                .map(user -> ResponseEntity.ok().body("User login successfully"))
+                .orElseGet(() -> ResponseEntity.status(401).body("Login failed"));
     }
 }
