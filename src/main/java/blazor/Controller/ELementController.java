@@ -34,6 +34,12 @@ public class ELementController {
         return eLementService.getElementById(microgridId, elementId);
     }
 
+    @Operation(summary = "Get one Element in all")
+    @GetMapping("all/elements/{elementId}")
+    public ResponseEntity<Element> getElementById(@PathVariable("elementId") Integer elementId) {
+        return eLementService.getElementById(elementId);
+    }
+
     @Operation(summary = "Create one Element in gridId")
     @PostMapping("/{microgridId}/elements/create")
     public void createELement(@PathVariable("microgridId") Integer microgridId, @RequestBody Element element) {

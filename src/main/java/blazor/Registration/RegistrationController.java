@@ -2,6 +2,7 @@ package blazor.Registration;
 
 import blazor.Entity.AppUser;
 import blazor.Service.AppUserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by ZYP on 2024/4/19 12:59AM
  */
+@CrossOrigin(origins = "http://localhost:5277")
+@Tag(name = "Registration")
 @RestController
 @RequestMapping(path = "/user/auth")
 @AllArgsConstructor

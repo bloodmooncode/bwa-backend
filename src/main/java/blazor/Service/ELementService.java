@@ -39,7 +39,7 @@ public class ELementService {
         return elements;
     }
 
-    public ResponseEntity<Element> getElementById(@PathVariable("microgridId") Integer microgridId, @PathVariable("elementId") Integer elementId) {
+    public ResponseEntity<Element> getElementById(@PathVariable("microgridId") Integer microgridId, Integer elementId) {
         // 查询 Microgrid
         Microgrid microgrid = microgridRepository.findById(microgridId).orElse(null);
         if (microgrid == null) {
@@ -54,6 +54,16 @@ public class ELementService {
                 break;
             }
         }
+
+        if (element == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(element, HttpStatus.OK);
+    }
+
+    public ResponseEntity<Element> getElementById(@PathVariable("elementId") Integer elementId) {
+        // 在 eLementRepository 中查找指定的 Element
+        Element element = eLementRepository.findById(elementId).orElse(null);
 
         if (element == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
